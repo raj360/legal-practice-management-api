@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String      @id @default(uuid())
+  email     String      @unique
+  password  String
+  name      String
+  role      Role        @default(ATTORNEY)
+  cases     Case[]
+  timeEntries TimeEntry[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+enum Role {
+  ADMIN
+  ATTORNEY
+}
+
+model Case {
+  id          String      @id @default(uuid())
+  title       String
+  description String?
+  status      CaseStatus  @default(OPEN)
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  documents   Document[]
+  timeEntries TimeEntry[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+enum CaseStatus {
+  OPEN
+  CLOSED
+  PENDING
+}
+
+model Document {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  fileType    String
+  fileSize    Int
+  caseId      String
+  case        Case      @relation(fields: [caseId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model TimeEntry {
+  id          String    @id @default(uuid())
+  description String
+  startTime   DateTime
+  endTime     DateTime?
+  billable    Boolean   @default(true)
+  rate        Float
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  caseId      String
+  case        Case      @relation(fields: [caseId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
