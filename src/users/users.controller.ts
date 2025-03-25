@@ -1,17 +1,22 @@
-import { 
-  Controller, 
-  Get, 
-  Post, 
-  Body, 
-  Param, 
-  Delete, 
-  UseGuards, 
-  Put
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseGuards,
+  Put,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard, Roles } from '../auth/roles.guard';
-import { CreateUserDto, Role, UpdateUserDto, UserDto } from '../interfaces/user.interface';
+import {
+  CreateUserDto,
+  Role,
+  UpdateUserDto,
+  UserDto,
+} from '../interfaces/user.interface';
 
 @Controller('users')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -46,8 +51,10 @@ export class UsersController {
 
   @Delete(':id')
   @Roles(Role.ADMIN)
-  async remove(@Param('id') id: string): Promise<{ success: boolean; message: string }> {
+  async remove(
+    @Param('id') id: string,
+  ): Promise<{ success: boolean; message: string }> {
     await this.usersService.remove(id);
     return { success: true, message: 'User deleted successfully' };
   }
-} 
+}

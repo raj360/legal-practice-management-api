@@ -7,4 +7,4 @@ import { TimeEntriesController } from './time-entries.controller';
   providers: [TimeEntriesService],
   exports: [TimeEntriesService],
 })
-export class TimeEntriesModule {} 
+export class TimeEntriesModule {}

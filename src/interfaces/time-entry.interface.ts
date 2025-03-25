@@ -41,4 +41,4 @@ export interface TimeEntryQueryParams {
   limit?: number;
   sortBy?: string;
   order?: 'asc' | 'desc';
-} 
+}

@@ -18,4 +18,4 @@ export const mockTimeEntryWithRelations = {
   ...mockTimeEntry,
   user: mockAttorneyUserWithoutPassword,
   case: mockCase,
-}; 
+};

@@ -262,6 +262,21 @@ yarn test:cov
 
 The data models in this application were developed based on industry research and best practices for legal practice management systems. For detailed information on the research process, references, and justification for field selection, please see the [Data Model Research & References](./_docs/data-model-research.md) document.
 
+## CI/CD Pipeline
+
+This project includes a GitHub Actions CI/CD pipeline that automatically:
+
+1. Installs dependencies
+2. Verifies TypeScript compilation
+3. Checks for linting issues
+4. Validates code formatting with Prettier
+5. Builds the project
+6. Runs tests with coverage reporting
+
+The pipeline runs on every push to the main branch and on all pull requests.
+
+To view the pipeline configuration, see the [GitHub Actions workflow file](./.github/workflows/ci.yml).
+
 ## License
 
 This project is [MIT licensed](LICENSE).

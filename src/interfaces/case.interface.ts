@@ -35,4 +35,4 @@ export interface CaseQueryParams {
   limit?: number;
   sortBy?: string;
   order?: 'asc' | 'desc';
-} 
+}

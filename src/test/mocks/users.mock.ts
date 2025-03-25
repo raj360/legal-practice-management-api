@@ -25,5 +25,7 @@ export const mockUserWithoutPassword = (user: any) => {
   return userWithoutPassword;
 };
 
-export const mockAdminUserWithoutPassword = mockUserWithoutPassword(mockAdminUser);
-export const mockAttorneyUserWithoutPassword = mockUserWithoutPassword(mockAttorneyUser); 
+export const mockAdminUserWithoutPassword =
+  mockUserWithoutPassword(mockAdminUser);
+export const mockAttorneyUserWithoutPassword =
+  mockUserWithoutPassword(mockAttorneyUser);

@@ -10,4 +10,4 @@ export class AuthController {
   async login(@Body() loginDto: LoginDto): Promise<LoginResponseDto> {
     return this.authService.login(loginDto);
   }
-} 
+}

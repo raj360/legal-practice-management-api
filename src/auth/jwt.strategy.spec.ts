@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { JwtStrategy } from './jwt.strategy';
 import { PrismaService } from '../prisma/prisma.service';
-import { 
-  mockAdminUserWithoutPassword, 
-  createMockPrismaService 
+import {
+  mockAdminUserWithoutPassword,
+  createMockPrismaService,
 } from '../test/mocks';
 
 describe('JwtStrategy', () => {
@@ -31,7 +31,9 @@ describe('JwtStrategy', () => {
 
   describe('validate', () => {
     it('should return user details from a JWT payload with sub claim', async () => {
-      jest.spyOn(prismaService.user, 'findUnique').mockResolvedValue(mockAdminUserWithoutPassword);
+      jest
+        .spyOn(prismaService.user, 'findUnique')
+        .mockResolvedValue(mockAdminUserWithoutPassword);
 
       const payload = {
         sub: '1',
@@ -66,4 +68,4 @@ describe('JwtStrategy', () => {
       expect(result).toBeNull();
     });
   });
-}); 
+});

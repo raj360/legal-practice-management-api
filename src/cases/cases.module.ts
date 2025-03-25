@@ -7,4 +7,4 @@ import { CasesController } from './cases.controller';
   providers: [CasesService],
   exports: [CasesService],
 })
-export class CasesModule {} 
+export class CasesModule {}

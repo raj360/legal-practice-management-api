@@ -1,22 +1,21 @@
-import { 
-  Controller, 
-  Get, 
-  Post, 
-  Body, 
-  Param, 
-  Delete, 
-  UseGuards, 
-  Query, 
-  Put
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseGuards,
+  Query,
+  Put,
 } from '@nestjs/common';
 import { DocumentsService } from './documents.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard, Roles } from '../auth/roles.guard';
-import { 
-  Document, 
-  DocumentQueryParams, 
-  CreateDocumentDto, 
-  UpdateDocumentDto 
+import {
+  DocumentQueryParams,
+  CreateDocumentDto,
+  UpdateDocumentDto,
 } from '../interfaces/document.interface';
 import { Role } from '../interfaces/user.interface';
 
@@ -56,4 +55,4 @@ export class DocumentsController {
     await this.documentsService.remove(id);
     return { success: true, message: 'Document deleted successfully' };
   }
-} 
+}

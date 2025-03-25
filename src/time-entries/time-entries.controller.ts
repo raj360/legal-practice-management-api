@@ -1,22 +1,21 @@
-import { 
-  Controller, 
-  Get, 
-  Post, 
-  Body, 
-  Param, 
-  Delete, 
-  UseGuards, 
-  Query, 
-  Put
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseGuards,
+  Query,
+  Put,
 } from '@nestjs/common';
 import { TimeEntriesService } from './time-entries.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard, Roles } from '../auth/roles.guard';
-import { 
-  TimeEntry, 
-  TimeEntryQueryParams, 
-  CreateTimeEntryDto, 
-  UpdateTimeEntryDto 
+import {
+  TimeEntryQueryParams,
+  CreateTimeEntryDto,
+  UpdateTimeEntryDto,
 } from '../interfaces/time-entry.interface';
 import { Role } from '../interfaces/user.interface';
 
