@@ -1,22 +1,22 @@
-import { 
-  Controller, 
-  Get, 
-  Post, 
-  Body, 
-  Param, 
-  Delete, 
-  UseGuards, 
-  Query, 
-  Put
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseGuards,
+  Query,
+  Put,
 } from '@nestjs/common';
 import { CasesService } from './cases.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard, Roles } from '../auth/roles.guard';
-import { 
-  Case, 
-  CaseQueryParams, 
-  CreateCaseDto, 
-  UpdateCaseDto 
+import {
+  Case,
+  CaseQueryParams,
+  CreateCaseDto,
+  UpdateCaseDto,
 } from '../interfaces/case.interface';
 import { Role } from '../interfaces/user.interface';
 
@@ -43,10 +43,7 @@ export class CasesController {
 
   @Put(':id')
   @Roles(Role.ADMIN, Role.ATTORNEY)
-  async update(
-    @Param('id') id: string,
-    @Body() updateCaseDto: UpdateCaseDto,
-  ) {
+  async update(@Param('id') id: string, @Body() updateCaseDto: UpdateCaseDto) {
     return this.casesService.update(id, updateCaseDto);
   }
 
@@ -56,4 +53,4 @@ export class CasesController {
     await this.casesService.remove(id);
     return { success: true, message: 'Case deleted successfully' };
   }
-} 
+}

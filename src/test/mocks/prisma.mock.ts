@@ -27,4 +27,4 @@ export const createMockPrismaService = () => ({
     update: jest.fn(),
     delete: jest.fn(),
   },
-}); 
+});

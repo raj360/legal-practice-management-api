@@ -1,0 +1,65 @@
+name: Legal Practice Management API CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install Yarn
+      run: npm install -g yarn
+
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+
+    - name: Check TypeScript compilation
+      run: yarn tsc --noEmit
+
+    - name: Check linting issues
+      run: yarn lint
+
+    - name: Check code formatting with Prettier
+      run: yarn format:check
+
+    - name: Build project
+      run: yarn build
+
+    - name: Run tests
+      run: yarn test
+
+    - name: Run tests with coverage
+      run: yarn test:cov
+
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v3
+      continue-on-error: true
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        directory: ./coverage
+        fail_ci_if_error: false
+        verbose: true
+
+    - name: Deploy to Production (if main branch)
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: |
+        echo "Deployment would happen here"
+        # Add deployment steps when ready
+        # Example: Deploy to a server, update container, etc. 

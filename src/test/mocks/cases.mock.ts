@@ -14,4 +14,4 @@ export const mockCase = {
 export const mockCaseWithUser = {
   ...mockCase,
   user: mockAttorneyUserWithoutPassword,
-}; 
+};

@@ -14,4 +14,4 @@ export const mockDocument = {
 export const mockDocumentWithCase = {
   ...mockDocument,
   case: mockCase,
-}; 
+};

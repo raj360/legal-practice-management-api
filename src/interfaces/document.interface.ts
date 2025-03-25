@@ -32,4 +32,4 @@ export interface DocumentQueryParams {
   limit?: number;
   sortBy?: string;
   order?: 'asc' | 'desc';
-} 
+}
